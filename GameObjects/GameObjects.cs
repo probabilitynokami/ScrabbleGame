@@ -1,4 +1,4 @@
-﻿using System.Reflection.Metadata;
+using System.Reflection.Metadata;
 using System;
 
 namespace GameObjects;
@@ -13,7 +13,12 @@ public interface ITile{
 }
 
 public interface IDeck{
-    public List<ITile> Tiles{get;set;}
+    public List<ITile> PopTiles(int n);
+    public ITile PopTiles();
+    public List<ITile> PeekRemainingTiles();
+
+    public void InsertTiles(IEnumerable<ITile> tiles);
+
     public void Shuffle();
 }
 

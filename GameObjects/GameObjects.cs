@@ -9,7 +9,8 @@ public interface IPlayer{
 }
 
 public interface ITile{
-    public char Letter{get;set;}
+    public char Letter{get;}
+    public int Point{get;}
 }
 
 public interface IDeck{

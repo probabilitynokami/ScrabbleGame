@@ -31,7 +31,7 @@ public interface ISquare{
 }
 
 public interface IBoard{
-    public List<ISquare> Squares{get; set;}
+    public List<List<ISquare>> Squares{get; set;}
     public int Size{get; set;}
 }
 

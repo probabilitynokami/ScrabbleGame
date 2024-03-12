@@ -24,8 +24,10 @@ public interface IDeck{
 }
 
 public interface ISquare{
-    int GetPoint();
-    int PlaceTile(ITile tile);
+
+    int WordMultiplier{get;}
+    int TileMultiplier{get;}
+    void PlaceTile(ITile tile);
     void Deactivate();
 }
 

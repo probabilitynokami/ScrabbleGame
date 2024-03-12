@@ -1,11 +1,11 @@
-using System.Reflection.Metadata;
+﻿using System.Reflection.Metadata;
 using System;
 
 namespace GameObjects;
 
 public interface IPlayer{
     public int ID{get;}
-    public string Name{get;}
+    public string Name{get;set;}
 }
 
 public interface ITile{

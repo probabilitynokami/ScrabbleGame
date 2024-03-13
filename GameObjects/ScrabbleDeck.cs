@@ -15,20 +15,18 @@ class ScrabbleDeck : IDeck {
     public List<ITile> PeekRemainingTiles(){
         if (_tiles is null)
             return [];
-        return new List<ITile>(_tiles);
+        return [.. _tiles];
     }
 
     public List<ITile> PopTiles(int n) {
         if (n<=0)
             return [];
 
-        if(_tiles is null)
-            return [];
-
         if (n>_tiles.Count)
             n = _tiles.Count;
 
-        return new List<ITile>(_tiles[^n..^0]);
+        _tiles = _tiles[^n..^0];
+        return [.. _tiles];
     }
 
     public ITile? PopTile()

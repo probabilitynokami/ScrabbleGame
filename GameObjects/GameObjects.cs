@@ -1,3 +1,4 @@
+﻿using System.Drawing;
 namespace GameObjects;
 
 public interface IPlayer{
@@ -29,8 +30,8 @@ public interface ISquare{
 }
 
 public interface IBoard{
-    public List<List<ISquare>> Squares{get; set;}
-    public int Size{get; set;}
+    public ISquare[,] Squares{get;}
+    public Size Size{get;}
 }
 
 public interface IDictionary{

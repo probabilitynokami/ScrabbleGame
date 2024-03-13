@@ -1,14 +1,12 @@
-using GameObjects;
+﻿using GameObjects;
+using GameUtilities;
 
 namespace GameController;
 
 public class GameControl
 {
+    AhoCorasickTrie wordChecker;
     IBoard board;
-    IDeck deck;
-    IDictionary dictionary;
-    List<IPlayer> players;
-
     public List<ITile> GetTilePlayer(IPlayer player){
         throw new NotImplementedException();
     }
@@ -17,7 +15,7 @@ public class GameControl
     }
 
     public bool CheckPlacingTile(int x, int y){
-        throw new NotImplementedException();
+        return !board.Squares[x,y].Occupied;
     }
 
     public void SetTilesToBoard(IPlayer setPlayer, ITile setTile, ISquare setSquare){
@@ -25,10 +23,10 @@ public class GameControl
     }
 
     public bool CheckWordValidity(string word){
-        throw new NotImplementedException();
+        return wordChecker.CheckWord(word);
     }
 
-    public int CalculatePointWords(int x, int y, int idTile, int idPlayer){
+    public int CalculatePointWords(List<ISquare> placedSquares){
         throw new NotImplementedException();
     }
 

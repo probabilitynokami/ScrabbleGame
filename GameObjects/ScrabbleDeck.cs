@@ -9,7 +9,7 @@ class ScrabbleDeck : IDeck {
         _tiles = [];
     }
     public void InsertTiles(IEnumerable<ITile> tiles){
-        _tiles?.AddRange(tiles);
+        _tiles.AddRange(tiles);
     }
 
     public List<ITile> PeekRemainingTiles(){

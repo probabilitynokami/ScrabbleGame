@@ -1,4 +1,4 @@
-﻿namespace GameObjects;
+namespace GameObjects;
 
 public interface IPlayer{
     public int ID{get;}
@@ -34,9 +34,9 @@ public interface IBoard{
 }
 
 public interface IDictionary{
-    public List<string> ValidWords{get; set;}
+    public List<string> ValidWords{get;}
 }
 
 public interface IRack{
-    public List<ITile> Tiles{get; set;}
+    public List<ITile>? Tiles{get;}
 }

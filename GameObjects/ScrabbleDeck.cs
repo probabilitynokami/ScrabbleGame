@@ -33,11 +33,11 @@ class ScrabbleDeck : IDeck {
     {
         if (_tiles is null)
             return null;
-        if(!_tiles.Any())
+        if(_tiles.Count == 0)
             return null;
 
-        var ret = _tiles[_tiles.Count-1];
-        _tiles.RemoveAt(_tiles.Count-1);
+        var ret = _tiles[^1];
+        _tiles = _tiles[0..^1];
 
         return ret;
     }

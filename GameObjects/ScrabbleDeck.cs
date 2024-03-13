@@ -43,6 +43,6 @@ class ScrabbleDeck : IDeck {
     }
 
     public void Shuffle(){
-        _tiles = _tiles?.Shuffle();
+        _tiles = _tiles.Shuffle();
     }
 }

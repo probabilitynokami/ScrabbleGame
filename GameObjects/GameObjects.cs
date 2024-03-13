@@ -1,4 +1,4 @@
-using System.Drawing;
+﻿using System.Drawing;
 namespace GameObjects;
 
 public interface IPlayer{
@@ -25,7 +25,11 @@ public interface ISquare{
 
     int WordMultiplier{get;}
     int TileMultiplier{get;}
-    void PlaceTile(ITile tile);
+    bool PlaceTile(ITile tile);
+
+    ITile? UnplaceTile();
+
+    bool Occupied{get;}
     void Deactivate();
 }
 

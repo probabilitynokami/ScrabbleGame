@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace GameObjects;
+﻿namespace GameObjects;
 
 public interface IPlayer{
     public int ID{get;}

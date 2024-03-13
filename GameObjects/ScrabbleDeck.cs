@@ -46,3 +46,7 @@ class ScrabbleDeck : IDeck {
         _tiles = _tiles.Shuffle();
     }
 }
+
+public interface IDeckPopulator{
+    public List<ITile> GetTiles();
+}

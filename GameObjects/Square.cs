@@ -5,6 +5,8 @@ public class Square : ISquare
     public int WordMultiplier{get; private set;}
     public int TileMultiplier{get; private set;}
 
+    public bool Occupied => occupyingTile is not null;
+
     private ITile? occupyingTile = null;
 
     public Square(int tileMultiplier, int wordMultiplier){
@@ -24,5 +26,15 @@ public class Square : ISquare
 
     public ITile? GetTile(){
         return occupyingTile;
+    }
+
+    bool ISquare.PlaceTile(ITile tile)
+    {
+        throw new NotImplementedException();
+    }
+
+    public ITile? UnplaceTile()
+    {
+        throw new NotImplementedException();
     }
 }

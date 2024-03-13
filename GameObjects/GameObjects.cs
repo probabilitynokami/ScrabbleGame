@@ -23,14 +23,14 @@ public interface IDeck{
 
 public interface ISquare{
 
-    int WordMultiplier{get;}
-    int TileMultiplier{get;}
-    bool PlaceTile(ITile tile);
+    public int WordMultiplier{get;}
+    public int TileMultiplier{get;}
+    public bool PlaceTile(ITile tile);
 
-    ITile? UnplaceTile();
+    public ITile? UnplaceTile();
 
-    bool Occupied{get;}
-    void Deactivate();
+    public bool Occupied{get;}
+    public void Deactivate();
 }
 
 public interface IBoard{

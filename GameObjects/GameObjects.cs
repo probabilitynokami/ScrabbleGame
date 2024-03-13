@@ -1,4 +1,4 @@
-﻿using System.Drawing;
+using System.Drawing;
 namespace GameObjects;
 
 public interface IPlayer{
@@ -40,4 +40,6 @@ public interface IDictionary{
 
 public interface IRack{
     public List<ITile>? Tiles{get;}
+    public ITile? TakeTile(int index);
+    public void AddTile(ITile tile);
 }

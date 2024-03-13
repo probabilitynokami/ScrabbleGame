@@ -4,7 +4,7 @@ using GameUtilities;
 
 class ScrabbleDeck : IDeck {
 
-    private List<ITile>? _tiles;
+    private List<ITile> _tiles;
     public ScrabbleDeck(){
         _tiles = [];
     }

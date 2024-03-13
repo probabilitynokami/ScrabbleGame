@@ -8,6 +8,14 @@ class ScrabbleDeck : IDeck {
     public ScrabbleDeck(){
         _tiles = [];
     }
+
+    public ScrabbleDeck(IDeckPopulator populator){
+        _tiles = populator.GetTiles();
+    }
+
+    public void PopulateDeck(IDeckPopulator populator){
+        _tiles = populator.GetTiles();
+    }
     public void InsertTiles(IEnumerable<ITile> tiles){
         _tiles.AddRange(tiles);
     }
@@ -24,7 +32,7 @@ class ScrabbleDeck : IDeck {
 
         if (n>_tiles.Count)
             n = _tiles.Count;
-
+        
         _tiles = _tiles[^n..^0];
         return [.. _tiles];
     }

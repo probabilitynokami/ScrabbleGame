@@ -7,9 +7,8 @@ namespace Tests;
 [TestClass]
 public class UnitTest2
 {
-    GameControl gameControl;
+    GameControl? gameControl;
     public UnitTest2(){
-        gameControl = new(new TestGamePopulator());
     }
 
     [TestMethod]

@@ -1,5 +1,5 @@
-using System.Drawing;
 using GameObjects;
+using GameUtilities;
 
 
 class ScrabbleBoard : IBoard
@@ -26,6 +26,7 @@ class ScrabbleBoard : IBoard
     public Size Size { get; private set;}
     private ISquare[,] _squares;
     public ISquare[,] Squares { get => _squares;}
+
 }
 
 interface IScrabbleBoardInitializer{

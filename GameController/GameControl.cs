@@ -1,4 +1,4 @@
-﻿using System.Dynamic;
+using System.Dynamic;
 using GameObjects;
 using GameUtilities;
 
@@ -75,6 +75,11 @@ public class GameControl
         gameState.placedSquares.Remove(square);
 
         return square.UnplaceTile();
+    }
+    
+    public List<List<ISquare>> GetTurnWords(){
+        var wordStarts = GetWordStarts(gameState.placedSquares);
+        return GetWords(wordStarts);
     }
 
     public int GetTurnScore(){

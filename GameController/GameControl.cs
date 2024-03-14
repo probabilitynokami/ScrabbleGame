@@ -45,6 +45,10 @@ public class GameControl
 
     }
 
+    public ITile? DrawTile(){
+        return deck.PopTile();
+    }
+
 
     public ITile? TakeTile(IPlayer player, int index){
         var data = playerData[player];

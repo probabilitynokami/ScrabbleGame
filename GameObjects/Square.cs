@@ -41,11 +41,17 @@ public class Square : ISquare
 
     public ITile? UnplaceTile()
     {
-        throw new NotImplementedException();
+        if(!Occupied)
+            return null;
+
+        var ret = occupyingTile;
+        occupyingTile = null;
+
+        return ret;
     }
 
     public ITile? PeekTile()
     {
-        throw new NotImplementedException();
+        return occupyingTile;
     }
 }

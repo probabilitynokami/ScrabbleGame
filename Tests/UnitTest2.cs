@@ -55,7 +55,7 @@ class DeckPopulator : IDeckPopulator
     public List<ITile> GetTiles()
     {
         List<ITile> ret = [];
-        foreach(var x in "hello"){
+        foreach(var x in "nhello"){
             ret.Add(new Tile(x,1));
         }
         return ret;
@@ -73,8 +73,8 @@ class TestGamePopulator : IGamePopulator
             }
         }
 
-        board.Squares[0,0] = new Square(10, 1, new BoardPosition(0,0));
-        board.Squares[4,4] = new Square(1, 10, new BoardPosition(0,0));
+        board.Squares[1,0] = new Square(10, 1, new BoardPosition(1,0));
+        board.Squares[3,1] = new Square(1, 10, new BoardPosition(3,1));
 
         return board;
 
@@ -92,6 +92,6 @@ class TestGamePopulator : IGamePopulator
 
     public IEnumerable<string> GetWordList()
     {
-        return ["hello","cruel","world","hellokitty","helloskitty"];
+        return ["hello","cruel","world","hellokitty","helloskitty","no","nothing"];
     }
 }

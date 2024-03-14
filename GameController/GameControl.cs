@@ -1,4 +1,4 @@
-﻿using System.Dynamic;
+using System.Dynamic;
 using GameObjects;
 using GameUtilities;
 
@@ -9,6 +9,8 @@ public interface IGamePopulator{
     public IEnumerable<string> GetWordList();
     
     public List<IPlayer> GetPlayers();
+
+    public IDeckPopulator GetDeckPopulator();
 }
 
 public class GameControl

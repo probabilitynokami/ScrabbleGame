@@ -1,7 +1,7 @@
 using GameObjects;
 
 
-class Tile : ITile {
+public class Tile : ITile {
     private char _letter;
     private int _point;
     public char Letter => _letter;

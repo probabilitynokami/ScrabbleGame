@@ -10,6 +10,16 @@ public static class Extensions{
     }
 }
 
+public struct Size{
+    public int Width{get;}
+    public int Height{get;}
+
+    public Size(int width, int height){
+        Width = width;
+        Height = height;
+    }
+}
+
 public struct BoardPosition{
     public int row;
     public int column;

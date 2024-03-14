@@ -26,6 +26,13 @@ public class GameControl
 
     private int playingIndex;
 
+    public IBoard GetBoard(){
+       return board; 
+    }
+    public List<ITile> GetRemainingTiles(){
+        return deck.PeekRemainingTiles();
+    }
+
     public IPlayer CurrentPlayer{get => players[playingIndex];}
 
     public GameControl(IGamePopulator populator){

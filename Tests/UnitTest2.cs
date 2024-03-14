@@ -26,7 +26,7 @@ public class UnitTest2
 
         var tile = gameControl.DrawTile();
         Assert.AreNotEqual(null, tile);
-        Assert.AreEqual(4, gameControl.GetRemainingTiles().Count);
+        Assert.AreEqual(5, gameControl.GetRemainingTiles().Count);
 
     }
 

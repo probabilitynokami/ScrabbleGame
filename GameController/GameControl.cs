@@ -202,6 +202,9 @@ public struct GameState{
     }
 
     public bool IsSquarePositionsValid(){
+        if (placedSquares.Count <= 2){
+            return true;
+        }
         bool sameColumn = true, sameRow = true;
         for(int i=1;i<placedSquares.Count;i++){
             sameColumn = sameColumn && 

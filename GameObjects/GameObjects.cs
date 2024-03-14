@@ -1,4 +1,4 @@
-using System.Drawing;
+﻿using System.Drawing;
 using GameUtilities;
 
 namespace GameObjects;
@@ -51,4 +51,14 @@ public interface IRack{
     public List<ITile>? Tiles{get;}
     public ITile? TakeTile(int index);
     public void AddTile(ITile tile);
+}
+
+public static class ExtensionISquare{    
+    public static string Stringify(this List<ISquare> squares){
+        string ret = "";
+        foreach(var sq in squares){
+            ret += sq.PeekTile().Letter;
+        }
+        return ret;
+    }
 }

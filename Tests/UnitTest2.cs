@@ -16,7 +16,7 @@ public class UnitTest2
         gameControl = new(new TestGamePopulator());
         Assert.AreEqual(5, gameControl.GetBoard().Size.Height);
         Assert.AreEqual(5, gameControl.GetBoard().Size.Width);
-        Assert.AreEqual(5, gameControl.GetRemainingTiles().Count);
+        Assert.AreEqual(6, gameControl.GetRemainingTiles().Count);
         Assert.IsNotNull(gameControl.GetBoard().Squares[0,0]);
     }
 

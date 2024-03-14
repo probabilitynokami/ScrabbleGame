@@ -1,3 +1,5 @@
+using GameUtilities;
+
 namespace GameObjects;
 
 public class Square : ISquare
@@ -7,11 +9,14 @@ public class Square : ISquare
 
     public bool Occupied => occupyingTile is not null;
 
+    public BoardPosition Position {get; private set;}
+
     private ITile? occupyingTile = null;
 
-    public Square(int tileMultiplier, int wordMultiplier){
+    public Square(int tileMultiplier, int wordMultiplier, BoardPosition position){
         WordMultiplier = wordMultiplier;
         TileMultiplier = tileMultiplier;
+        Position = position;
     }
 
     public void Deactivate()
@@ -34,6 +39,11 @@ public class Square : ISquare
     }
 
     public ITile? UnplaceTile()
+    {
+        throw new NotImplementedException();
+    }
+
+    public ITile? PeekTile()
     {
         throw new NotImplementedException();
     }

@@ -123,16 +123,25 @@ public class UnitTest2
         gameControl.GetBoard().Squares[0,4].UnplaceTile();
         gameControl.gameState.Reset();
         gameControl.PlaceTile(new Tile('n',1), new BoardPosition(0,4));
-
+        Assert.AreEqual(1,gameControl.gameState.placedSquares.Count);
+        var words = gameControl.GetTurnWords();
+        Assert.AreEqual(1,words.Count);
+        
+        Assert.AreEqual("no",words[0].Stringify());
+        Assert.IsTrue(gameControl.wordChecker.CheckWord("no"));
+        
+        
         score = gameControl.GetTurnScore();
         Assert.AreEqual(2,score);
+        
+        gameControl.gameState.Reset();
 
         gameControl.PlaceTile(new Tile('h',1), new BoardPosition(0,1));
         gameControl.PlaceTile(new Tile('l',1), new BoardPosition(2,1));
         gameControl.PlaceTile(new Tile('l',1), new BoardPosition(3,1));
 
         score = gameControl.GetTurnScore();
-        Assert.AreEqual(26+40,score);
+        Assert.AreEqual(40,score);
 
     }
 
@@ -182,6 +191,6 @@ class TestGamePopulator : IGamePopulator
 
     public IEnumerable<string> GetWordList()
     {
-        return ["hello","cruel","world","hellokitty","helloskitty","no","nothing"];
+        return ["hello","cruel","world","hellokitty","helloskitty","no","nothing","hell"];
     }
 }

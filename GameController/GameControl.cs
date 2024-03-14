@@ -24,6 +24,10 @@ public class GameControl
 
     List<IPlayer> players;
 
+    private int playingIndex;
+
+    public IPlayer CurrentPlayer{get => players[playingIndex];}
+
     public GameControl(IGamePopulator populator){
         board = populator.GetBoard();
         wordChecker = new(populator.GetWordList());
@@ -33,6 +37,8 @@ public class GameControl
         foreach(var player in players){
             playerData[player] = new PlayerData();
         }
+
+        playingIndex = 0;
 
         deck = new Deck(populator.GetDeckPopulator());
 

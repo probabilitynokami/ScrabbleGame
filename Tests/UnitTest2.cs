@@ -43,7 +43,33 @@ public class UnitTest2
     }
 
     [TestMethod]
-    public void Test(){
+    public void TestWordStart(){
+        gameControl = new(new TestGamePopulator());
+
+        var tile = gameControl.DrawTile(); // o
+        gameControl.PlaceTile(tile,new BoardPosition(1,4));
+        tile = gameControl.DrawTile(); // l
+        gameControl.PlaceTile(tile,new BoardPosition(1,3));
+        tile = gameControl.DrawTile(); // l
+        gameControl.PlaceTile(tile,new BoardPosition(1,2));
+        tile = gameControl.DrawTile(); // e
+        gameControl.PlaceTile(tile,new BoardPosition(1,1));
+        tile = gameControl.DrawTile(); // h
+        gameControl.PlaceTile(tile,new BoardPosition(1,0));
+        tile = gameControl.DrawTile(); // n
+        gameControl.PlaceTile(tile,new BoardPosition(0,4));
+
+        var sqs = gameControl.Beam(gameControl.GetBoard().Squares[1,0],0,1);
+        Assert.AreEqual("hello",sqs.Stringify());
+        Assert.AreEqual(5,sqs.Count);
+
+        Assert.IsTrue(gameControl.IsStartSquare(sqs[0]));
+        Assert.IsFalse(gameControl.IsStartSquare(sqs[1]));
+        Assert.IsFalse(gameControl.IsStartSquare(sqs[^1]));
+
+        var wordStarts = gameControl.GetWordStarts(gameControl.gameState.placedSquares);
+        Assert.AreEqual(2,wordStarts.Count);
+    }
         gameControl = new(new TestGamePopulator());
     }
 

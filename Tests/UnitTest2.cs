@@ -70,7 +70,36 @@ public class UnitTest2
         var wordStarts = gameControl.GetWordStarts(gameControl.gameState.placedSquares);
         Assert.AreEqual(2,wordStarts.Count);
     }
+
+    [TestMethod]
+    public void TestWordConstruct(){
         gameControl = new(new TestGamePopulator());
+        gameControl.PlaceTile(new Tile('h',1), new BoardPosition(1,0));
+        gameControl.PlaceTile(new Tile('e',1), new BoardPosition(1,1));
+        gameControl.PlaceTile(new Tile('l',1), new BoardPosition(1,2));
+        gameControl.PlaceTile(new Tile('l',1), new BoardPosition(1,3));
+        gameControl.PlaceTile(new Tile('o',1), new BoardPosition(1,4));
+
+        gameControl.PlaceTile(new Tile('n',1), new BoardPosition(0,4));
+
+        gameControl.PlaceTile(new Tile('h',1), new BoardPosition(0,1));
+        gameControl.PlaceTile(new Tile('l',1), new BoardPosition(2,1));
+        gameControl.PlaceTile(new Tile('l',1), new BoardPosition(3,1));
+
+        var wordStarts = gameControl.GetWordStarts(gameControl.gameState.placedSquares);
+
+        var words = gameControl.GetWords(wordStarts);
+
+        Assert.AreEqual(3,words.Count);
+
+        List<string> words_str = [];
+
+        foreach(var w in words)
+            words_str.Add(w.Stringify());
+        
+        Assert.IsTrue(words_str.Contains("hello"));
+        Assert.IsTrue(words_str.Contains("no"));
+        Assert.IsTrue(words_str.Contains("hell"));
     }
 
 }

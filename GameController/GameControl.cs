@@ -86,9 +86,8 @@ public class GameControl
         if (!gameState.IsSquarePositionsValid())
             return 0;
         
-        var wordStarts = GetWordStarts(gameState.placedSquares);
 
-        var words = GetWords(wordStarts);
+        var words = GetTurnWords();
 
         foreach(var word in words){
             if(!wordChecker.CheckWord(word.Stringify()))

@@ -25,18 +25,19 @@ public class Square : ISquare
         TileMultiplier = 1;
     }
 
-    public void PlaceTile(ITile tile){
+    public bool PlaceTile(ITile tile){
+        if (Occupied)
+            return false;
+
         occupyingTile = tile;
+
+        return true;
     }
 
     public ITile? GetTile(){
         return occupyingTile;
     }
 
-    bool ISquare.PlaceTile(ITile tile)
-    {
-        throw new NotImplementedException();
-    }
 
     public ITile? UnplaceTile()
     {

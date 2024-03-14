@@ -25,7 +25,7 @@ public interface IDeck{
 
 public interface ISquare{
 
-    public BoardPosition Position{get;set;}
+    public BoardPosition Position{get;}
     public int WordMultiplier{get;}
     public int TileMultiplier{get;}
     public bool PlaceTile(ITile tile);

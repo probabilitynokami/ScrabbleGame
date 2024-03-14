@@ -1,4 +1,4 @@
-using System.Dynamic;
+﻿using System.Dynamic;
 using GameObjects;
 using GameUtilities;
 
@@ -16,7 +16,7 @@ public interface IGamePopulator{
 public class GameControl
 {
     IBoard board;
-    AhoCorasickTrie wordChecker;
+    public AhoCorasickTrie wordChecker;
     public GameState gameState;
     Dictionary<IPlayer,PlayerData> playerData;
 

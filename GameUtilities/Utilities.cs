@@ -10,6 +10,15 @@ public static class Extensions{
     }
 }
 
+public struct BoardPosition{
+    public int row;
+    public int column;
+
+    public BoardPosition(int r, int c){
+        row = r;
+        column = c;
+    }
+}
 
 public class AhoCorasickTrie{
     private AhoCorasickNode root;

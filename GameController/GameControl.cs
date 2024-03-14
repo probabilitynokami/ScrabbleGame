@@ -172,6 +172,10 @@ public class GameControl
 public struct GameState{
     public List<ISquare> placedSquares;
 
+    public GameState(){
+        placedSquares = [];
+    }
+
     public bool IsSquarePositionsValid(){
         bool sameColumn = true, sameRow = true;
         for(int i=1;i<placedSquares.Count;i++){

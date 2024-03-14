@@ -106,7 +106,10 @@ public class GameControl
     private int TilePoint(List<ISquare> word){
         int point = 0;
         foreach(var sq in word){
-            point += sq.PeekTile().Point*sq.TileMultiplier;
+            var tile = sq.PeekTile();
+            if (tile is null)
+                return 0;
+            point += tile.Point*sq.TileMultiplier;
         }
         return point;
     }

@@ -20,6 +20,8 @@ public class GameControl
     GameState gameState;
     Dictionary<IPlayer,PlayerData> playerData;
 
+    IDeck deck;
+
     List<IPlayer> players;
 
     public GameControl(IGamePopulator populator){
@@ -31,6 +33,9 @@ public class GameControl
         foreach(var player in players){
             playerData[player] = new PlayerData();
         }
+
+        deck = new Deck(populator.GetDeckPopulator());
+
     }
 
 

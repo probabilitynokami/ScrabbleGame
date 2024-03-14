@@ -1,5 +1,4 @@
-﻿using System.Drawing;
-using GameUtilities;
+﻿using GameUtilities;
 
 namespace GameObjects;
 
@@ -57,7 +56,10 @@ public static class ExtensionISquare{
     public static string Stringify(this List<ISquare> squares){
         string ret = "";
         foreach(var sq in squares){
-            ret += sq.PeekTile().Letter;
+            var tile = sq.PeekTile();
+            if (tile is null)
+                return "";
+            ret += tile.Letter;
         }
         return ret;
     }

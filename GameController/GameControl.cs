@@ -17,7 +17,7 @@ public class GameControl
 {
     IBoard board;
     AhoCorasickTrie wordChecker;
-    GameState gameState;
+    public GameState gameState;
     Dictionary<IPlayer,PlayerData> playerData;
 
     IDeck deck;
@@ -113,7 +113,7 @@ public class GameControl
         return multiplier;
     }
 
-    private List<List<ISquare>> GetWords(List<ISquare> wordStarts){
+    public List<List<ISquare>> GetWords(List<ISquare> wordStarts){
         List<List<ISquare>> ret = [];
 
         foreach(var sq in wordStarts){
@@ -131,7 +131,7 @@ public class GameControl
 
     
 
-    private List<ISquare> GetWordStarts(List<ISquare> placedSquares){
+    public List<ISquare> GetWordStarts(List<ISquare> placedSquares){
 
         HashSet<ISquare> set = new(placedSquares);
         foreach(var sq in placedSquares){
@@ -147,7 +147,7 @@ public class GameControl
         return ret;
     }
 
-    private bool IsStartSquare(ISquare sq){
+    public bool IsStartSquare(ISquare sq){
         bool emptyUp = false;
         bool emptyLeft = false;
 
@@ -167,7 +167,7 @@ public class GameControl
         return emptyUp&&emptyLeft;
     }
 
-    private List<ISquare> Beam(ISquare start, int columnStep, int rowStep){
+    public List<ISquare> Beam(ISquare start, int rowStep, int columnStep){
         var current = start;
         List<ISquare> ret = [];
         while(current.Occupied){
@@ -177,8 +177,8 @@ public class GameControl
             ret.Add(current);
 
             BoardPosition nextPosition;
-            nextPosition.row = Math.Min(current.Position.row+rowStep, board.Size.Height);
-            nextPosition.column = Math.Min(current.Position.column+columnStep, board.Size.Width);
+            nextPosition.row = Math.Min(current.Position.row+rowStep, board.Size.Height-1);
+            nextPosition.column = Math.Min(current.Position.column+columnStep, board.Size.Width-1);
 
             current = board.Squares[nextPosition.row,nextPosition.column];
         }

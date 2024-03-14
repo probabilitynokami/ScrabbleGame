@@ -1,4 +1,6 @@
-﻿using System.Drawing;
+using System.Drawing;
+using GameUtilities;
+
 namespace GameObjects;
 
 public interface IPlayer{
@@ -23,11 +25,14 @@ public interface IDeck{
 
 public interface ISquare{
 
+    public BoardPosition Position{get;set;}
     public int WordMultiplier{get;}
     public int TileMultiplier{get;}
     public bool PlaceTile(ITile tile);
 
     public ITile? UnplaceTile();
+
+    public ITile? PeekTile();
 
     public bool Occupied{get;}
     public void Deactivate();

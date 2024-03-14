@@ -32,6 +32,7 @@ public class GameControl
         board = populator.GetBoard();
         wordChecker = new(populator.GetWordList());
         players = populator.GetPlayers();
+        gameState = new();
 
         playerData = [];
         foreach(var player in players){

@@ -1,3 +1,5 @@
+using System;
+using System.Diagnostics;
 using GameController;
 using GameObjects;
 using GameUtilities;
@@ -101,6 +103,40 @@ public class UnitTest2
         Assert.IsTrue(words_str.Contains("no"));
         Assert.IsTrue(words_str.Contains("hell"));
     }
+    [TestMethod]
+    public void TestScoring(){
+        gameControl = new(new TestGamePopulator());
+        gameControl.PlaceTile(new Tile('h',2), new BoardPosition(1,0));
+        gameControl.PlaceTile(new Tile('e',1), new BoardPosition(1,1));
+        gameControl.PlaceTile(new Tile('l',1), new BoardPosition(1,2));
+        gameControl.PlaceTile(new Tile('l',1), new BoardPosition(1,3));
+        gameControl.PlaceTile(new Tile('o',1), new BoardPosition(1,4));
+
+
+        int score = gameControl.GetTurnScore();
+        Assert.AreEqual(24,score);
+
+        gameControl.PlaceTile(new Tile('n',1), new BoardPosition(0,4));
+        score = gameControl.GetTurnScore();
+        Assert.AreEqual(0,score); // 0 because illegal placement
+
+        gameControl.GetBoard().Squares[0,4].UnplaceTile();
+        gameControl.gameState.Reset();
+        gameControl.PlaceTile(new Tile('n',1), new BoardPosition(0,4));
+
+        score = gameControl.GetTurnScore();
+        Assert.AreEqual(2,score);
+
+        gameControl.PlaceTile(new Tile('h',1), new BoardPosition(0,1));
+        gameControl.PlaceTile(new Tile('l',1), new BoardPosition(2,1));
+        gameControl.PlaceTile(new Tile('l',1), new BoardPosition(3,1));
+
+        score = gameControl.GetTurnScore();
+        Assert.AreEqual(26+40,score);
+
+    }
+
+
 
 }
 

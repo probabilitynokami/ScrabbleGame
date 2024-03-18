@@ -5,7 +5,7 @@ using GameUtilities;
 namespace Tests;
 
 [TestClass]
-public class UnitTest1
+public class UnitTestWordChecker
 {
     [TestMethod]
     public void TestWordChecker()

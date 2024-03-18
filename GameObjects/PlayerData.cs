@@ -6,6 +6,6 @@ public class PlayerData
         Rack = new Rack();
     }
     public int Score{get;set;}
-    public Rack Rack{get;set;}
+    public IRack Rack{get;set;}
 
 }

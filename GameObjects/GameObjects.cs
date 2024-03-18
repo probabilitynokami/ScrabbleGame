@@ -47,19 +47,38 @@ public interface IDictionary{
 }
 
 public interface IRack{
-    public List<ITile>? Tiles{get;}
+    public int RackSize{get;}
+    public List<ITile> Tiles{get;}
     public ITile? TakeTile(int index);
+    public ITile? TakeTile();
     public void AddTile(ITile tile);
 }
 
-public static class ExtensionISquare{    
-    public static string Stringify(this List<ISquare> squares){
+//TODO: move this somwhwerjje 
+public static class ExtensionStringify{    
+    public static string Stringify(this IEnumerable<ISquare> squares){
         string ret = "";
         foreach(var sq in squares){
             var tile = sq.PeekTile();
             if (tile is null)
                 return "";
             ret += tile.Letter;
+        }
+        return ret;
+    }
+    public static string Stringify(this IEnumerable<ITile> squares){
+        string ret = "";
+        foreach(var tile in squares){
+            if (tile is null)
+                return "";
+            ret += tile.Letter;
+        }
+        return ret;
+    }
+    public static IEnumerable<string> Stringify(this IEnumerable<IEnumerable<ISquare>> squares){
+        List<string> ret = new();
+        foreach(IEnumerable<ISquare> sq in squares){
+            ret.Add(sq.Stringify());
         }
         return ret;
     }

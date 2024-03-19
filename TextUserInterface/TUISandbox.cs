@@ -6,9 +6,11 @@ using TextUserInterface;
 public class TUISandbox {
     static async Task Main(){
         var tui = new TUI(new GameUtilities.Size(5,5));
-        var inputTask = Task.Run(() => {
+
+        AnsiConsole.Clear();
+        var inputTask = Task.Run(async () => {
             while(true)
-                tui.HandleInput(Console.ReadKey(true).KeyChar);
+                await tui.HandleInput(Console.ReadKey(true).KeyChar);
         });
 
         var renderTask = Task.Run(async () => {

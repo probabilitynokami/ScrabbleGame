@@ -96,7 +96,8 @@ public class TUI
         if(!RerenderFlag){
             return;
         }
-        AnsiConsole.Clear();
+
+        AnsiConsole.Cursor.SetPosition(0,0);
         for(int i =0;i<TUISize.Height;i++){
             for(int j=0;j<TUISize.Width;j++){
                 AnsiConsole.Markup(renderBuffer[i][j]);

@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Data;
 
 namespace GameUtilities;
 
@@ -8,13 +9,14 @@ public static class Extensions{
         // TODO: do real shuffle here
         return collections;
     }
-    public static void Initialize<T>(this T[,] array, T value)
+    public static void Initialize<T>(this T[][] array, T value, int columns)
     {
         for (int i = 0; i < array.GetLength(0); i++)
         {
-            for (int j = 0; j < array.GetLength(1); j++)
+            array[i] = new T[columns];
+            for (int j = 0; j < columns; j++)
             {
-                array[i, j] = value;
+                array[i][j] = value;
             }
         }
     }

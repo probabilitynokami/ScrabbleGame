@@ -7,7 +7,7 @@
     <PackageReference Include="Spectre.Console" Version="0.48.0" />
   </ItemGroup>
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
+    <!-- <OutputType>Exe</OutputType> -->
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>

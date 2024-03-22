@@ -4,6 +4,7 @@ using GameUtilities;
 namespace SafeGameController;
 
 public interface ITUIBackendInterface{
+    public IPlayer GetCurrentPlayer();
     public PlayerData GetCurrentPlayerData();
     public IBoard GetCurrentBoard();
     public List<ISquare> GetPlacedSquares();
@@ -15,6 +16,8 @@ public interface ITUIBackendInterface{
     public bool SkipTurn();
     public bool NextTurn();
     public bool ShuffleDeck();
+
+    public int GetCurrentTurnScore();
 
     public bool IsHoldingTile{get;}
 }
@@ -28,6 +31,7 @@ public class SafeGameController : ITUIBackendInterface
     
     public SafeGameController(IGamePopulator populator){
         gameController = new(populator);
+        gameController.FirstDeal();
     }
 
     public IBoard GetCurrentBoard()
@@ -63,6 +67,8 @@ public class SafeGameController : ITUIBackendInterface
 
         gameController.PlaceTile(tileOnHand,position);
 
+        tileOnHand = null;
+
         return true;
     }
 
@@ -73,7 +79,9 @@ public class SafeGameController : ITUIBackendInterface
             return false;
         if(tileOnHand is not null)
             return false;
+
         tileOnHand = rack.TakeTile(index);
+        
 
         return tileOnHand is not null;
     }
@@ -88,5 +96,15 @@ public class SafeGameController : ITUIBackendInterface
     {
         // TODO: implement this
         throw new NotImplementedException();
+    }
+
+    public IPlayer GetCurrentPlayer()
+    {
+        return gameController.CurrentPlayer;
+    }
+
+    public int GetCurrentTurnScore()
+    {
+        return gameController.GetTurnScore();
     }
 }

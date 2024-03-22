@@ -1,4 +1,5 @@
 ﻿using GameUtilities;
+using SafeGameController;
 using Spectre.Console;
 namespace TextUserInterface;
 
@@ -10,13 +11,19 @@ public class TUI
 
     private string[][] renderBuffer;
 
+    private ITUIBackendInterface _api;
+
     private readonly GameUtilities.Size TUISize;
-    private Grid spectreGrid;
 
     public bool RerenderFlag{get; set;} = true;
     
     private int cursorRow;
     private int cursorColumn;
+
+    private BoardPosition _rackOrigin;
+    private BoardPosition _boardOrigin;
+
+    private BoardPosition _playerDataOrigin;
     public async Task HandleInput(char input){
         switch(input){
             case 'k': cursorRow = Math.Max(cursorRow-1,0); break;
@@ -24,18 +31,20 @@ public class TUI
             case 'l': cursorColumn = Math.Min(cursorColumn+1,TUISize.Width-1); break;
             case 'h': cursorColumn = Math.Max(cursorColumn-1,0); break;
             case ' ': await Task.Run(() => cellFunc[cursorRow][cursorColumn].Invoke()); break;
+            case 'o': _api.NextTurn();break;
         }
         RerenderFlag = true;
     }
     
-    public TUI(GameUtilities.Size size){
+    public TUI(GameUtilities.Size size, ITUIBackendInterface api){
         TUISize = size;
+        _api = api;
 
         content = new string[size.Height][];
-        content.Initialize("H",size.Width);
+        content.Initialize(" ",size.Width);
 
         renderBuffer = new string[size.Height][];
-        renderBuffer.Initialize(" ",size.Width);
+        renderBuffer.Initialize("",size.Width);
 
         highlight = new bool[size.Height][];
         highlight.Initialize(false,size.Width);
@@ -45,25 +54,56 @@ public class TUI
         cellFunc = new Action[size.Height][];
         cellFunc.Initialize(()=>{}, size.Width);
 
-        spectreGrid = new Grid();
-        spectreGrid.AddColumns(size.Width);
-        for(int i=0;i<size.Height;i++)
-            spectreGrid.AddRow(content[i]);
+        SetBoard(0,0);
+        SetRack(_api.GetCurrentBoard().Size.Height+2,0);
+        _playerDataOrigin.row = 0;
+        _playerDataOrigin.column = _api.GetCurrentBoard().Size.Width+2;
+    }
 
-        for(int i=0;i<size.Height;i++){
-            for(int j=0;j<size.Width;j++){
-                int storeI=i, storeJ=j;
-                cellFunc[i][j] = () => {
-                    if(content[storeI][storeJ] == "H")
-                        content[storeI][storeJ] = "X";
-                    else
-                        content[storeI][storeJ] = "H";
+    private void UpdatePlayerData(){
+        var row = _playerDataOrigin.row;
+        var column = _playerDataOrigin.column;
+        var playerData = _api.GetCurrentPlayerData();
+        var player = _api.GetCurrentPlayer();
+        content[row][column] = player.Name;
+        content[row+1][column] = "Total Score:" + playerData.Score.ToString();
+        content[row+2][column] = "Turn Score:" + _api.GetCurrentTurnScore();
+    }
+
+    private void SetBoard(int row, int column){
+        _boardOrigin.row = row;
+        _boardOrigin.column = column;
+        var board = _api.GetCurrentBoard();
+        for(int ii=0;ii<board.Size.Height;ii++){
+            for(int jj=0;jj<board.Size.Width;jj++){
+                int i = ii,j = jj;
+                cellFunc[row+i][column+j] = () => {
+                    if(_api.IsHoldingTile){
+                        _api.PlaceTileOnBoard(new BoardPosition(i,j));
+                    }
+                    else if(_api.GetPlacedSquares().Contains(board.Squares[i,j])){
+                        content[row+i][column+j] = "#";
+                    }
                 };
             }
         }
     }
 
-    public void UpdateContent(){
+    private void SetRack(int row, int column){
+        _rackOrigin.row = row;
+        _rackOrigin.column = column;
+
+        var rack = _api.GetCurrentPlayerData().Rack;
+        var tiles = rack.Tiles;
+        for(int ii=0;ii<rack.RackSize;ii++){
+            int i = ii;
+            cellFunc[row][column+i] = () => {
+                _api.SelectTileOnRack(i);
+            };
+        }
+    }
+
+    private void UpdateCursorHighlight(){
         for(int i=0;i<TUISize.Height;i++){
             for(int j=0;j<TUISize.Width;j++){
                 if(i==cursorRow && j==cursorColumn){
@@ -74,7 +114,40 @@ public class TUI
                 }
             }
         }
+    }
 
+    private void UpdateGameBoard(){
+        var row = _boardOrigin.row;
+        var column = _boardOrigin.column;
+        var board = _api.GetCurrentBoard();
+        for(int i=0;i<board.Size.Height;i++){
+            for(int j=0;j<board.Size.Width;j++){
+                var sq = board.Squares[i,j];
+                if(!sq.Occupied){
+                    content[row+i][column+j] = "_";
+                    continue;
+                }
+                content[row+i][column+j] = ""+sq.PeekTile()!.Letter;
+            }
+        }
+    }
+
+    private void UpdateRack(){
+        var rack = _api.GetCurrentPlayerData().Rack;
+        var tiles = rack.Tiles;
+        for(int i=0;i<rack.RackSize;i++){
+            if(i<tiles.Count)
+                content[_rackOrigin.row][_rackOrigin.column+i] = ""+tiles[i].Letter;
+            else
+                content[_rackOrigin.row][_rackOrigin.column+i] = "_";
+
+        }
+    }
+    public void UpdateContent(){
+        UpdateCursorHighlight();
+        UpdateRack();
+        UpdateGameBoard();
+        UpdatePlayerData();
     }
     public void UpdateBuffer(){
         for(int i =0;i<TUISize.Height;i++){

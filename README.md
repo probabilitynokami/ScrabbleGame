@@ -10,6 +10,14 @@ Scrabblin scrabblelin
 % dotnet run
 ```
 
+## How to move
+
+using hjkl to move like vim. (j is down k is up h is left l is right)
+
+press space to pick a letter from rack.
+
+press space in board to place the letter to board.
+
 ## new design
 
 ```mermaid

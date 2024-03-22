@@ -18,6 +18,10 @@ press space to pick a letter from rack.
 
 press space in board to place the letter to board.
 
+## Test playing??
+
+Try the test case here <https://users.cs.northwestern.edu/~robby/uc-courses/22001-2008-winter/scrabble.html> because I'm still using a dummy dictionary for the word list.
+
 ## new design
 
 ```mermaid

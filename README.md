@@ -2,6 +2,14 @@
 
 Scrabblin scrabblelin
 
+## How to run
+
+```bash
+% dotnet build
+% cd Application
+% dotnet run
+```
+
 ## new design
 
 ```mermaid

@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SafeGameController", "SafeG
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextUserInterface", "TextUserInterface\TextUserInterface.csproj", "{84AFAE87-E23D-4430-879A-6A5F833A795A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{A78DA1B9-BCBD-46DF-BC4F-29F87775E98D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,5 +50,9 @@ Global
 		{84AFAE87-E23D-4430-879A-6A5F833A795A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{84AFAE87-E23D-4430-879A-6A5F833A795A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{84AFAE87-E23D-4430-879A-6A5F833A795A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A78DA1B9-BCBD-46DF-BC4F-29F87775E98D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A78DA1B9-BCBD-46DF-BC4F-29F87775E98D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A78DA1B9-BCBD-46DF-BC4F-29F87775E98D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A78DA1B9-BCBD-46DF-BC4F-29F87775E98D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

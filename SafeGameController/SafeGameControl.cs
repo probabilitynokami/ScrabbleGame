@@ -3,7 +3,7 @@ using GameObjects;
 using GameUtilities;
 namespace SafeGameController;
 
-public interface IGUIBackendInterface{
+public interface ITUIBackendInterface{
     public PlayerData GetCurrentPlayerData();
     public IBoard GetCurrentBoard();
     public List<ISquare> GetPlacedSquares();
@@ -15,12 +15,16 @@ public interface IGUIBackendInterface{
     public bool SkipTurn();
     public bool NextTurn();
     public bool ShuffleDeck();
+
+    public bool IsHoldingTile{get;}
 }
-public class SafeGameController : IGUIBackendInterface
+public class SafeGameController : ITUIBackendInterface
 {
     private GameControl gameController;
     
     private ITile? tileOnHand = null;
+
+    public bool IsHoldingTile{get => tileOnHand is not null;}
     
     public SafeGameController(IGamePopulator populator){
         gameController = new(populator);

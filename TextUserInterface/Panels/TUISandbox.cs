@@ -5,7 +5,7 @@ using TextUserInterface;
 
 public class TUISandbox {
     static async Task Main(){
-        var tui = new TUI(new GameUtilities.Size(5,5));
+        var tui = new TUI(new GameUtilities.Size(20,10));
 
         AnsiConsole.Clear();
         var inputTask = Task.Run(async () => {

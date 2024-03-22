@@ -10,8 +10,6 @@ public class TUI
 
     private string[][] renderBuffer;
 
-    private Text textBuffer;
-
     private readonly GameUtilities.Size TUISize;
     private Grid spectreGrid;
 
@@ -42,7 +40,6 @@ public class TUI
         highlight = new bool[size.Height][];
         highlight.Initialize(false,size.Width);
 
-        textBuffer = new Text("");
 
 
         cellFunc = new Action[size.Height][];
